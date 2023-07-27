@@ -27,7 +27,7 @@ services:
       - 8082:80
 
   devcamp-creditcheck-service:
-    image: devcamp-creditcheck-service
+    image: harbor.entelectprojects.co.za/internaltraining-devcamp/devcamp-creditcheck-service
     container_name: DevCamp-CreditCheck-Service
     environment:
       - Application__FailureResponses__Error4xx__FrequencyPercentage=10
