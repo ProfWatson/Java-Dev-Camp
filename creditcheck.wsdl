@@ -1,0 +1,44 @@
+<definitions name = "CreditCheckService"
+   targetNamespace = "http://localhost:8083/CreditCheck"
+   xmlns = "http://schemas.xmlsoap.org/wsdl/"
+	xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns = "http://localhost:8083/CreditCheck"
+	xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
+	<message name = "CreditCheckRequest">
+		<part name = "customerId" type = "xsd:int"/>
+	</message>
+	<message name = "CreditCheckResponse">
+		<part name = "status" type = "xsd:string"/>
+	</message>
+	<portType name = "Credit_PortType">
+		<operation name = "CreditCheck">
+			<input message = "tns:CreditCheckRequest"/>
+			<output message = "tns:CreditCheckResponse"/>
+		</operation>
+	</portType>
+	<binding name = "Credit_Binding" type = "tns:Credit_PortType">
+		<soap:binding style = "rpc" transport = "http://schemas.xmlsoap.org/soap/http"/>
+		<operation name = "CreditCheck">
+			<soap:operation soapAction = "CreditCheck"/>
+			<input>
+				<soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "entelect:devcamp:creditcheckservice"
+               use = "encoded"/>
+			</input>
+			<output>
+				<soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "entelect:devcamp:creditcheckservice"
+               use = "encoded"/>
+			</output>
+		</operation>
+	</binding>
+	<service name = "Credit_Service">
+		<documentation>Definition of Credit Check Service</documentation>
+		<port binding = "tns:Credit_Binding" name = "Credit_Port">
+			<soap:address
+            location = "http://localhost:8033/CreditCheck" />
+		</port>
+	</service>
+</definitions>
