@@ -1,12 +1,21 @@
 # DevCamp Services
 
 ## Table of contents
-- [Summary](#summary)
-- [Repository](#repository)
-- [Running the services](#running-the-services)
-- [Interacting with the services](#interacting-with-the-services)
-- [Postman](#postman)
-- [SoapUI](#soapui)
+
+  - [Summary](#summary)
+  - [Prerequisites](#prerequisites)
+    - [Docker](#docker)
+    - [Harbor credentials](#harbor-credentials)
+    - [Postman](#postman)
+  - [Repository](#repository)
+  - [Running the services](#running-the-services)
+  - [Interacting with the services](#interacting-with-the-services)
+    - [Auth Service](#auth-service)
+    - [KYC Service](#kyc-service)
+    - [DHA Service](#dha-service)
+    - [Credit Check Service](#credit-check-service)
+  - [Postman Collections](#postman-collections)
+  - [SoapUI](#soapui)
 
 ## Summary
 
@@ -15,6 +24,24 @@ There are four mock services available for consumption as part of the DevCamp pr
 - **KYC:** REST web service to ontain KYC (Know Your Customer) information for customers
 - **DHA:** REST web service to obtain DHA (Dept. of Home Affairs) information for customers
 - **Credit Check:** SOAP web service to perform a credit check for customers
+
+## Prerequisites
+
+In order to run these services so that you can interact with them, you will need the following:
+
+### Docker
+
+The services are made available as Docker images (see [Repository](#repository) section below) and these can be run with a single Docker compose file. In order to do that you will need a local installation of Docker or some alternative containerization platform. See the [Docker fo Windows](https://holocrons.entelect.co.za/code/local-development/docker-for-windows) holocron for information on alternatives to Docker Desktop.
+
+### Harbor credentials
+
+In order to pull the service images from Harbor, you will need credentials for Harbor. These will be distributed separate to this document.
+
+### Postman
+
+It is not a requirement to have Postman installed but it would be beneficial as there are a few Postman collections availabe that could help you understand how to interact with the services. See the [Postman](#postman) section further down.
+
+There is also a SoapUI project available for testing calls to the SOAP webservice, for those whose tooling preferences have been forged during the late cretacious period (see the [SoapUI](#soapui) section further down), but the same service and endpoint from that project is also available in the Postman collections.
 
 ## Repository
 
@@ -38,7 +65,7 @@ You can set the environment variable and run docker compose all in one fell swoo
 
 Linux shell:
 ```bash
-PUB_KEY=$(cat app.pub) && docker-compose up
+export PUB_KEY=$(cat app.pub) && docker-compose up
 ```
 
 Powershell:
@@ -93,7 +120,7 @@ The service requires Basic Auth, making use of a username and password.
 
 The service is documented in the accompanying [WSDL document](creditcheck.wsdl)
 
-## Postman
+## Postman Collections
 
 In the [/Postman](Postman/) folder of this repository, there are four collections that can be imported into your Postman workspace:
 
@@ -109,6 +136,12 @@ Additionally there is also an environment that can be imported into your workspa
 These collections and environment will enable you to test all four of the services if they are running through Docker Compose.
 
 It is worth pointing out that the `POST Token` request in the `Auth Service` collection includes a Test Script which automatically writes the returned JWT into the `{{jwt}}` variable of the active environment. This means that you do not have to manually copy and paste the JWT in order to test the KYC Service and DHA Service.
+
+![Postman Test Script](assets/postman_testscript.png)
+
+Finally, it is also important to note that the Postman environment imported above needs to be selected as the active environment in the top right corner of Postman in order for the variables defined in it to take effect.
+
+![Postman Environment](assets/postman_environment.png)
 
 ## SoapUI
 
