@@ -2,8 +2,6 @@
 
 # Table of contents
 
-- [DevCamp Services](#devcamp-services)
-  - [Table of contents](#table-of-contents)
   - [Summary](#summary)
   - [Prerequisites](#prerequisites)
     - [Docker](#docker)
