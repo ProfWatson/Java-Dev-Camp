@@ -1,6 +1,6 @@
 # DevCamp Services
 
-# Table of contents
+## Table of contents
 
   - [Summary](#summary)
   - [Prerequisites](#prerequisites)
