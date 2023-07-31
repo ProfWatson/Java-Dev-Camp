@@ -55,6 +55,9 @@ In order to access the Docker images on Harbor you will need to log in from the 
 echo "YOUR_PASSWORD_HERE" | docker login harbor.entelectprojects.co.za --username "USER_NAME_HERE" --password-stdin
 ```
 
+It is recommended that you acess these using the created robot account username (robot-internaltraining-devcamp+robot-internaltraining-devcamp-readtoken
+) and token (gmBwXzOuZrt7PehO5hB2b3xzagbt1faT).
+
 ## Running the services
 
 The services can be started in your local Docker host using the accompanying [Docker compose file](compose.yaml). Two of the services require configuration of a public key which is used internally for JWT auth. This public key is passed into the Docker composition as an environment variable, named `PUB_KEY`.
@@ -83,7 +86,7 @@ The Auth service can be accessed at http://localhost:8080 and exposes a single e
 
 The service requires Basic Auth, making use of a username and password.
 
-The service responds to a successful request to the `/token` endpoint with a JWT in the response body. This JWT can be used for subsequent calls to the [KYC](#kyc-service) and [DHA](#dha-service) services.
+The service responds to a successful request to the `/token` endpoint with a JWT in the response body. This JWT can be used for subsequent calls to the [KYC](#kyc-service), [DHA](#dha-service) and [CIS](#Customer Information Store Service)   .
 
 The returned JWT is valid only for an hour, after which time a new JWT will have to be obtained from the Auth service.
 
@@ -110,7 +113,7 @@ The service requires a Bearer token in the Authorization header. The bearer toke
 
 The service is documented in the accompanying [OpenAPI document](dha.yaml) or at http://localhost:8082/swagger/index.html when the service is running.
 
-### Credit Check Service ###
+### Credit Check Service 
 
 The Credit Check service can be accessed at http://localhost:8083 and exposes a single endpoint:
 
@@ -120,6 +123,12 @@ The service requires Basic Auth, making use of a username and password.
 
 The service is documented in the accompanying [WSDL document](creditcheck.wsdl)
 
+
+### Customer Information Store Service
+
+The customer information store can be accessed on http://localhost:8084 and exposes multiple endpoints for maintaining customer information
+
+The service is documented in the accompanying [OpenAPI document]
 ## Postman Collections
 
 In the [/Postman](Postman/) folder of this repository, there are four collections that can be imported into your Postman workspace:
@@ -128,6 +137,7 @@ In the [/Postman](Postman/) folder of this repository, there are four collection
 - [KYC Service.postman_collection.json](Postman/KYC%20Service.postman_collection.json)
 - [DHA Service.postman_collection.json](Postman/DHA%20Service.postman_collection.json)
 - [Credit Check Service.postman_collection.json](Postman/Credit%20Check%20Service.postman_collection.json)
+- [Customer Information Store.postman_collection.json](Postman/)
 
 Additionally there is also an environment that can be imported into your workspace:
 

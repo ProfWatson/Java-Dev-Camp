@@ -33,3 +33,9 @@ services:
       - Application__FailureResponses__Error4xx__FrequencyPercentage=10
     ports:
       - 8083:80
+
+  devcamp-cis-service:
+    image: harbor.entelectprojects.co.za/internaltraining-devcamp/devcamp-cis-service:latest
+    container_name: DevCamp-CIS-Service
+    ports:
+      - 8084:8080
