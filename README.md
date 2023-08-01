@@ -14,16 +14,18 @@
     - [KYC Service](#kyc-service)
     - [DHA Service](#dha-service)
     - [Credit Check Service](#credit-check-service)
+    - [Customer Information Store Service](#customer-information-store-service)
   - [Postman Collections](#postman-collections)
   - [SoapUI](#soapui)
 
 ## Summary
 
-There are four mock services available for consumption as part of the DevCamp practical exercise.
-- **Auth:** REST web service to obtain JWT tokens for auth with other services
-- **KYC:** REST web service to ontain KYC (Know Your Customer) information for customers
-- **DHA:** REST web service to obtain DHA (Dept. of Home Affairs) information for customers
-- **Credit Check:** SOAP web service to perform a credit check for customers
+There are five services available for consumption as part of the DevCamp practical exercise.
+  - **Auth:** REST web service to obtain JWT tokens for auth with other services
+  - **KYC:** REST web service to ontain KYC (Know Your Customer) information for customers
+  - **DHA:** REST web service to obtain DHA (Dept. of Home Affairs) information for customers
+  - **Credit Check:** SOAP web service to perform a credit check for customers
+  - **Customer Information Store Service:** REST web service for maintaining customer information
 
 ## Prerequisites
 
@@ -128,10 +130,11 @@ The service is documented in the accompanying [WSDL document](creditcheck.wsdl)
 
 The customer information store can be accessed on http://localhost:8084 and exposes multiple endpoints for maintaining customer information
 
-The service is documented in the accompanying [OpenAPI document]
+The service is documented in the accompanying [OpenAPI document](customer-information.yml)
+
 ## Postman Collections
 
-In the [/Postman](Postman/) folder of this repository, there are four collections that can be imported into your Postman workspace:
+In the [/Postman](Postman/) folder of this repository, there are five collections that can be imported into your Postman workspace:
 
 - [Auth Service.postman_collection.json](Postman/Auth%20Service.postman_collection.json)
 - [KYC Service.postman_collection.json](Postman/KYC%20Service.postman_collection.json)
