@@ -1,14 +1,24 @@
 {
 	"info": {
-		"_postman_id": "c342df9d-8ed5-4c01-a894-a66d0f2fd83d",
+		"_postman_id": "c762bbb8-f3b8-4d8b-b18e-c80c1127b08b",
 		"name": "Auth Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "3111078",
-		"_collection_link": "https://mytreasuretrove.postman.co/workspace/TFO-DevCamp-Dev-Squadron~2cab436c-4c8f-4ca8-93a7-6a6180435bca/collection/3111078-c342df9d-8ed5-4c01-a894-a66d0f2fd83d?action=share&creator=3111078&source=collection_link"
+		"_exporter_id": "514534"
 	},
 	"item": [
 		{
 			"name": "Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"postman.setEnvironmentVariable('jwt', responseBody);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -23,15 +33,6 @@
 					]
 				}
 			},
-			"event": [
-			  {
-				"listen": "test",
-				"script": {
-				  "type": "text/javascript",
-				  "exec": "postman.setEnvironmentVariable('jwt', responseBody);"
-				}
-			  }
-			],
 			"response": []
 		}
 	],
@@ -39,15 +40,35 @@
 		"type": "basic",
 		"basic": [
 			{
-				"key": "password",
-				"value": "password",
+				"key": "username",
+				"value": "admin@entelect.co.za",
 				"type": "string"
 			},
 			{
-				"key": "username",
-				"value": "user",
+				"key": "password",
+				"value": "password",
 				"type": "string"
 			}
 		]
-	}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
 }
