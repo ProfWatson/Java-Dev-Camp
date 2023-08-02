@@ -15,6 +15,7 @@
     - [DHA Service](#dha-service)
     - [Credit Check Service](#credit-check-service)
     - [Customer Information Store Service](#customer-information-store-service)
+    - [Postgres Database](#postgres-database)
   - [Postman Collections](#postman-collections)
   - [SoapUI](#soapui)
 
@@ -126,12 +127,46 @@ The service requires Basic Auth, making use of a username and password.
 
 The service is documented in the accompanying [WSDL document](creditcheck.wsdl)
 
-
 ### Customer Information Store Service
 
-The customer information store can be accessed on http://localhost:8084 and exposes multiple endpoints for maintaining customer information
+The customer information store can be accessed on http://localhost:8084 and exposes 11 endpoints for maintaining customer information:
+
+- [GET] `/v1/customers`
+- [GET] `/v1/customer/{customer_id}`
+- [POST] `/v1/customer/`
+- [GET] `/v1/customerTypes`
+- [POST] `/v1/customerTypes`
+- [PUT] `/v1/customer/{customerId}/customerTypes/{customerTypeId}`
+- [GET] `/v1/customer/{customerId}/documents`
+- [POST] `/v1/customer/{customerId}/documents`
+- [GET] `/v1/accountTypes`
+- [POST] `/v1/accountTypes`
+- [POST] `/v1/customer/{customerId}/accounts/{accountTypeId}`
+
+This service requires a Bearer Token in JWT format to be able to be accessed.
 
 The service is documented in the accompanying [OpenAPI document](customer-information.yml)
+
+### Postgres Database
+
+There is a postgres database that has been deployed along with the services. You can use this service to store informtation for the services that you have built (should you want to).
+
+If you are running your services on the docker environment, you can use the docker container name as the hostname for the database:
+
+spring:
+    datasource:
+    url: jdbc:postgresql://DevCamp-Postgres-db:5432/postgres
+    username: user
+    password: password
+    driverClassName: org.postgresql.Driver
+
+If you add the container to the docker compose file, it will be able to access the network by defaul. If you want to run the docker image seperately, you will need to specify the network that the docker container should use. If we remove the decvamp-cis-service from our docker compose file and would run it with just docker, the command would be as follows:
+
+```bash
+docker run --network devcamp-starter_default -p 8084:8080 harbor.entelectprojects.co.za/internaltraining-devcamp/devcamp-cis-service:latest
+```
+
+If you are running your application "locally" (i.e. intellij, mvnw or java run) then you would need to specify the db hostname as localhost. I would recommend using spring profiles and having one for running the service locally and another for using the service via a docker container. 
 
 ## Postman Collections
 
