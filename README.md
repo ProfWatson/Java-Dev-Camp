@@ -21,6 +21,7 @@
 ## Summary
 
 There are five services available for consumption as part of the DevCamp practical exercise.
+
   - **Auth:** REST web service to obtain JWT tokens for auth with other services
   - **KYC:** REST web service to ontain KYC (Know Your Customer) information for customers
   - **DHA:** REST web service to obtain DHA (Dept. of Home Affairs) information for customers
