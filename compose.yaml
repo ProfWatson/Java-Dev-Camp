@@ -39,3 +39,17 @@ services:
     container_name: DevCamp-CIS-Service
     ports:
       - 8084:8080
+
+  devcamp-db:
+      image: postgres:14.2
+      container_name: DevCamp-Postgres-db
+      ports:
+        - 5432:5432
+      environment:
+        - POSTGRES_PASSWORD=password
+        - POSTGRES_USER=user
+      volumes:
+        - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
