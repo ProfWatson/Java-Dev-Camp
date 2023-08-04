@@ -6,7 +6,7 @@ info:
   license:
     name: "MIT"
 servers:
-  - url: "http://localhost:8080/v1"
+  - url: "http://localhost:8082"
 paths:
   /status/marital/{idNumber}:
     get:
@@ -129,10 +129,10 @@ components:
     MaritalStatusEnum:
       type: "string"
       enum:
-        - "single"
-        - "widowed"
-        - "divorced"
-        - "married"
+        - "Single"
+        - "Widowed"
+        - "Divorced"
+        - "Married"
     DuplicateIDDocumentCheck:
       type: "object"
       required:
