@@ -239,11 +239,12 @@ The service is documented in the accompanying [WSDL document](creditcheck.wsdl)
 
 ### Customer Information Store Service
 
-The customer information store can be accessed on http://localhost:8084 and exposes 11 endpoints for maintaining customer information:
+The customer information store can be accessed on http://localhost:8084 and exposes 12 endpoints for maintaining customer information:
 
 - [GET] `/v1/customers`
 - [GET] `/v1/customer/{customer_id}`
 - [POST] `/v1/customer/`
+- [GET] `/v1/customer/`
 - [GET] `/v1/customerTypes`
 - [POST] `/v1/customerTypes`
 - [PUT] `/v1/customer/{customerId}/customerTypes/{customerTypeId}`
