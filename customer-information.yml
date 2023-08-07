@@ -6,9 +6,42 @@ info:
   license:
     name: "MIT"
 servers:
-  - url: "http://localhost:8081/v1"
+  - url: "http://localhost:8084/v1"
 paths:
   /customer:
+    get:
+      summary: "Get Customer by their Email Address"
+      operationId: getCustomerByEmailAddress
+      parameters:
+        - name: "emailAddress"
+          in: "query"
+          required: true
+          description: "The email address of the customer that we want to fetch"
+          schema:
+            type: string
+      tags:
+        - "customer"
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerDto"
+        "401":
+          description: "User is not authorized to access this resource"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedError"
+        "404":
+          description: "User is not found in this system"
+        default:
+          description: "unexpected error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
     post:
       summary: "Register a new customer on the system"
       operationId: "registerCustomer"

@@ -180,7 +180,7 @@
 						},
 						{
 							"key": "customerTypeId",
-							"value": "4"
+							"value": "9"
 						}
 					]
 				}
@@ -332,6 +332,31 @@
 						{
 							"key": "accountTypeId",
 							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer by Email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}:{{port_customer}}/v1/customer?emailAddress=jesse.leresche@entelect.co.za",
+					"host": [
+						"{{baseurl}}"
+					],
+					"port": "{{port_customer}}",
+					"path": [
+						"v1",
+						"customer"
+					],
+					"query": [
+						{
+							"key": "emailAddress",
+							"value": "jesse.leresche@entelect.co.za"
 						}
 					]
 				}
