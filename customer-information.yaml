@@ -2,7 +2,7 @@
 openapi: "3.0.0"
 info:
   version: "1.0.0"
-  title: "Department of Home Affairs Checks"
+  title: "Customer Information Store"
   license:
     name: "MIT"
 servers:
@@ -486,7 +486,7 @@ components:
         - id
       properties:
         id:
-          type: number
+          type: integer
           format: long
         name:
           type: string

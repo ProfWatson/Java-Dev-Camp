@@ -256,7 +256,7 @@ The customer information store can be accessed on http://localhost:8084 and expo
 
 This service requires a Bearer Token in JWT format to be able to be accessed.
 
-The service is documented in the accompanying [OpenAPI document](customer-information.yml)
+The service is documented in the accompanying [OpenAPI document](customer-information.yaml)
 
 ### Postgres Database
 
