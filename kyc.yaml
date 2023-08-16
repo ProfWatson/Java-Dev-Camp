@@ -28,6 +28,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/KYC"
+        "401":
+          description: "User is not authorized to access this resource"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedError"
         default:
           description: "unexpected error"
           content:
@@ -35,6 +41,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 components:
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     KYC:
       type: "object"
@@ -60,9 +71,14 @@ components:
           format: "int32"
         message:
           type: "string"
+    UnauthorizedError:
+      type: "object"
+      description: "Access token is missing or invalid"
     TaxComplianceStatus:
       type: "string"
       enum:
         - "red"
         - "amber"
         - "green"
+security:
+  - bearerAuth: []
