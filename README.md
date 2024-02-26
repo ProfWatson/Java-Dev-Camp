@@ -39,7 +39,16 @@ The services are made available as Docker images (see [Repository](#repository) 
 
 ### Harbor credentials
 
-In order to pull the service images from Harbor, you will need credentials for Harbor. These will be distributed separate to this document.
+In order to access the Docker images on Harbor you will need to log in from the command line with the following command:
+
+``` Bash
+echo "YOUR_PASSWORD_HERE" | docker login harbor.entelectprojects.co.za --username "USER_NAME_HERE" --password-stdin
+```
+
+In order to pull the service images from Harbor, you will need credentials for Harbor. You can use the following Robot account that has only `read` access to these repo's:
+
+username: robot-internaltraining-devcamp+robot-internaltraining-devcamp-readtoken
+token: gmBwXzOuZrt7PehO5hB2b3xzagbt1faT
 
 ### Postman
 
