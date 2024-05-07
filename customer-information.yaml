@@ -446,8 +446,6 @@ components:
           format: long
         username:
           type: string
-        password:
-          type: string
         firstName:
           type: string
         lastName:
@@ -486,7 +484,7 @@ components:
         - id
       properties:
         id:
-          type: integer
+          type: number
           format: long
         name:
           type: string
