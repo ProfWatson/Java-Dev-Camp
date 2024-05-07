@@ -181,7 +181,7 @@ The Auth service can be accessed at http://localhost:8080 and exposes a single e
 
 The service requires Basic Auth, making use of a username and password.
 
-This should only be used for making request to third party services. No additional user details are to be stored here , you will need to manage customer credtionals on your end. 
+ This should be used internally in the product/fulfillment service for making request to third party services. No additional user details are to be stored here , you will need to manage customer credentials on your end.
 
 There should be 2 users that are currently configured in the DB. Their credentials are:
 

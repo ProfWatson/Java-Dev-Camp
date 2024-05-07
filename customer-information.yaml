@@ -231,6 +231,45 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /customer/{customerId}/documents/{documentId}:
+    get:
+      tags:
+        - "customer"
+      operationId: getCustomerDocumentByCustomerId
+      parameters:
+        - name: "customerId"
+          in: "path"
+          required: true
+          description: "The id of the customer that we want to fetch"
+          schema:
+            type: integer
+            format: long
+        - name: "documentId"
+          in: "path"
+          required: true
+          description: "The id of the customer that we want to fetch"
+          schema:
+            type: integer
+            format: long
+      responses:
+        "200":
+          description: "Expected response to a valid request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DocumentDto"
+        "401":
+          description: "User is not authorized to access this resource"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedError"
+        default:
+          description: "unexpected error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /customer/{customerId}/documents:
     get:
       tags:
@@ -495,9 +534,15 @@ components:
       items:
         $ref: "#/components/schemas/CustomerDto"
     DocumentsDto:
-      type: array
+      type: "array"
       items:
-        $ref: "#/components/schemas/DocumentDto"
+        type: "object"
+        required:
+          - "id"
+        properties:
+          id:
+            type: integer
+            format: long
     DocumentDto:
       type: "object"
       required:
