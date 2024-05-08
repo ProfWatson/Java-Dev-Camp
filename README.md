@@ -89,25 +89,6 @@ Powershell:
 $env:PUB_KEY = Get-Content app.pub; docker-compose up
 ```
 
-## Interacting with the services
-
-### Auth Service
-
-The Auth service can be accessed at http://localhost:8080 and exposes a single endpoint:
-
-- [POST] `/token`.
-
-The service requires Basic Auth, making use of a username and password.
-
-There should be 3 users that are currently configured in the DB. Their credentials are:
-
-1. `admin@entelect.co.za` / `password`
-2. `jesse.leresche@entelect.co.za` / `ILoveSpring`
-3. `ahmad@entelect.co.za` / `SpringIsMeh`
-
-The `admin@entelect.co.za` account can be used for your system-to-system communication.
-
-The service responds to a successful request to the `/token` endpoint with a JWT in the response body. This JWT can be used for subsequent calls to the [KYC](#kyc-service), [DHA](#dha-service) and [CIS](#Customer Information Store Service)   .
 # DevCamp Services
 
 ## Table of contents
@@ -200,11 +181,13 @@ The Auth service can be accessed at http://localhost:8080 and exposes a single e
 
 The service requires Basic Auth, making use of a username and password.
 
-There should be 3 users that are currently configured in the DB. Their credentials are:
+ This should be used internally in the product/fulfillment service for making request to third party services. No additional user details are to be stored here , you will need to manage customer credentials on your end.
+
+There should be 2 users that are currently configured in the DB. Their credentials are:
+
 
 1. `admin@entelect.co.za` / `password`
-2. `jesse.leresche@entelect.co.za` / `ILoveSpring`
-3. `ahmad@entelect.co.za` / `SpringIsMeh`
+2. `products@entelect.co.za` / `SpringProducts01$`
 
 The `admin@entelect.co.za` account can be used for your system-to-system communication.
 
@@ -248,7 +231,7 @@ The service is documented in the accompanying [WSDL document](creditcheck.wsdl)
 
 ### Customer Information Store Service
 
-The customer information store can be accessed on http://localhost:8084 and exposes 12 endpoints for maintaining customer information:
+The customer information store can be accessed on http://localhost:8084 and exposes 13 endpoints for maintaining customer information:
 
 - [GET] `/v1/customers`
 - [GET] `/v1/customer/{customer_id}`
@@ -258,6 +241,7 @@ The customer information store can be accessed on http://localhost:8084 and expo
 - [POST] `/v1/customerTypes`
 - [PUT] `/v1/customer/{customerId}/customerTypes/{customerTypeId}`
 - [GET] `/v1/customer/{customerId}/documents`
+- [GET] `/v1//customer/{cusomerId}/doucments/{documentId}`
 - [POST] `/v1/customer/{customerId}/documents`
 - [GET] `/v1/accountTypes`
 - [POST] `/v1/accountTypes`
