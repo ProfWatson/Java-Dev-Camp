@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ff0e044b-9b6a-4cb9-b816-ac67c3e645cc",
+		"_postman_id": "386b0cc5-2b40-42bd-b334-b80a6497ea94",
 		"name": "Customer Information Store Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "11793427"
@@ -65,7 +65,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"username\": \"Sas.vanderwest@entelect.co.za\",\n  \"password\": \"SasLovesSpring\",\n  \"firstName\": \"Sas\",\n  \"lastName\": \"Van Der Westhuizen\",\n  \"customerTypeId\": 3,\n  \"idNumber\": \"9205157654082\"\n}",
+					"raw": "{\n  \"username\": \"Sas.vanderwest@entelect.co.za\",\n  \"firstName\": \"Sas\",\n  \"lastName\": \"Van Der Westhuizen\",\n  \"customerTypeId\": 3,\n  \"idNumber\": \"9205157654082\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -194,7 +194,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"document\": \"some-base64-content\"\n}",
+					"raw": "{\n    \"document\": \"some-base64-content\",\n    \"name\": \"some-name-or-description\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -252,6 +252,38 @@
 		},
 		{
 			"name": "Get Customer Document Details By Document Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}:{{port_customer}}/v1/customer/:customerId/documents/:documentId",
+					"host": [
+						"{{baseurl}}"
+					],
+					"port": "{{port_customer}}",
+					"path": [
+						"v1",
+						"customer",
+						":customerId",
+						"documents",
+						":documentId"
+					],
+					"variable": [
+						{
+							"key": "customerId",
+							"value": "1"
+						},
+						{
+							"key": "documentId",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Copy",
 			"request": {
 				"method": "GET",
 				"header": []
