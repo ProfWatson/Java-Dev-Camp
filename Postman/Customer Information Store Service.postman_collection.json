@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "73ce0000-927c-4cf6-a930-865e5045b9bc",
+		"_postman_id": "ff0e044b-9b6a-4cb9-b816-ac67c3e645cc",
 		"name": "Customer Information Store Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "514534"
+		"_exporter_id": "11793427"
 	},
 	"item": [
 		{
@@ -188,33 +188,6 @@
 			"response": []
 		},
 		{
-			"name": "Get Customer Documents By CustomerId",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseurl}}:{{port_customer}}/v1/customer/:customerId/documents",
-					"host": [
-						"{{baseurl}}"
-					],
-					"port": "{{port_customer}}",
-					"path": [
-						"v1",
-						"customer",
-						":customerId",
-						"documents"
-					],
-					"variable": [
-						{
-							"key": "customerId",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Add Customer Documents By CustomerId",
 			"request": {
 				"method": "POST",
@@ -247,6 +220,41 @@
 						}
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer Documents By CustomerId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}:{{port_customer}}/v1/customer/:customerId/documents",
+					"host": [
+						"{{baseurl}}"
+					],
+					"port": "{{port_customer}}",
+					"path": [
+						"v1",
+						"customer",
+						":customerId",
+						"documents"
+					],
+					"variable": [
+						{
+							"key": "customerId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer Document Details By Document Id",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		},
