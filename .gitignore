@@ -48,3 +48,8 @@ Thumbs.db
 *.mov
 *.wmv
 
+java-reference-app-authentication-service/
+java-reference-app-credit-check-service/
+java-reference-app-customer-inquiry-service/
+java-reference-app-kyc-service/
+reference-app-dha-service-dotnet/
