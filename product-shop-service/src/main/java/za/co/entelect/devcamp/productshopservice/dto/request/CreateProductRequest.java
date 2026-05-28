@@ -4,6 +4,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import za.co.entelect.devcamp.productshopservice.model.enums.FulfilmentType;
+import za.co.entelect.devcamp.productshopservice.model.enums.CustomerType;
+import za.co.entelect.devcamp.productshopservice.model.enums.AccountType;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import java.math.BigDecimal;
 
@@ -24,4 +29,7 @@ public class CreateProductRequest {
 
     @NotNull(message = "Active status is required")
     private Boolean active;
+
+    private Set<CustomerType> qualifyingCustomerTypes = new HashSet<>();
+    private Set<AccountType> qualifyingAccountTypes = new HashSet<>();
 }

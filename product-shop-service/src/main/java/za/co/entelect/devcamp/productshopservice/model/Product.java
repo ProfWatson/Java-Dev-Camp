@@ -5,7 +5,17 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import za.co.entelect.devcamp.productshopservice.model.enums.FulfilmentType;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 
+import za.co.entelect.devcamp.productshopservice.model.enums.CustomerType;
+import za.co.entelect.devcamp.productshopservice.model.enums.AccountType;
+
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.math.BigDecimal;
 
 @Data
@@ -31,4 +41,27 @@ public class Product {
 
     @NotNull(message = "Active status is required")
     private Boolean active;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<CustomerType> qualifyingCustomerTypes = new HashSet<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<AccountType> qualifyingAccountTypes = new HashSet<>();
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    public void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }

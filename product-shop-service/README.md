@@ -123,6 +123,7 @@ src/main/java
 ├── model
 │   └── enums
 ├── repository
+├── security
 └── service
 ```
 
@@ -154,10 +155,18 @@ Sample Body:
 
 ```json
 {
-  "name": "Savings Account",
-  "description": "Basic savings product",
-  "fulfilmentType": "A",
-  "active": true
+  "name": "Gold Exclusive Investment",
+  "description": "Investment for premium customers",
+  "price": 15000,
+  "fulfilmentType": "B",
+  "active": true,
+  "qualifyingCustomerTypes": [
+    "INDIVIDUAL"
+  ],
+  "qualifyingAccountTypes": [
+    "GOLD_CHEQUE",
+    "PLATINUM_CHEQUE"
+  ]
 }
 ```
 
@@ -191,7 +200,13 @@ Sample Body:
   "lastName": "Doe",
   "email": "john.doe@email.com",
   "idNumber": "9001015009087",
-  "phoneNumber": "0821234567"
+  "phoneNumber": "0821234567",
+  "password": "Password123!",
+  "customerType": "INDIVIDUAL",
+  "accountTypes": [
+    "GOLD_CHEQUE",
+    "SAVINGS"
+  ]
 }
 ```
 
@@ -377,7 +392,126 @@ Actuators
 
 ---
 
-# Future Improvements
+# Authentication & Security
 
-Planned future enhancements:
-- authentication and JWT
+The application uses JWT-based authentication with Spring Security.
+
+## Features
+
+* BCrypt password hashing
+* JWT access tokens
+* JWT refresh tokens
+* Stateless authentication
+* Role-based authorization
+* Protected endpoints
+* Custom unauthorized responses
+
+## Roles
+
+The application currently supports:
+
+* CUSTOMER
+* ADMIN
+
+### Authorization Rules
+
+| Endpoint                   | Access        |
+| -------------------------- | ------------- |
+| GET /products              | Public        |
+| POST /products             | ADMIN only    |
+| POST /customers            | Authenticated |
+| POST /product-applications | Authenticated |
+| GET /profile/me            | Authenticated |
+
+## Login
+
+```http
+POST /auth/login
+```
+
+Example request:
+
+```json
+{
+  "email": "admin@productshop.com",
+  "password": "Admin123!"
+}
+```
+
+Example response:
+
+```json
+{
+  "accessToken": "<jwt>",
+  "refreshToken": "<refresh-token>",
+  "tokenType": "Bearer"
+}
+```
+
+## Refresh Token
+
+```http
+POST /auth/refresh
+```
+
+Example request:
+
+```json
+{
+  "refreshToken": "<refresh-token>"
+}
+```
+
+# Swagger / OpenAPI
+
+Swagger UI is enabled for API exploration and testing.
+
+Access Swagger UI at:
+
+```text
+http://localhost:8090/swagger-ui/index.html
+```
+
+Secured endpoints can be tested by:
+
+1. Calling `/auth/login`
+2. Copying the returned JWT access token
+3. Clicking the `Authorize` button in Swagger
+4. Pasting the JWT token
+
+# Product Eligibility
+
+The application supports product eligibility checks aligned with the BRS.
+
+Eligibility is determined using:
+
+* customer type
+* owned account types
+* product qualifying customer types
+* product qualifying account types
+
+## Eligibility Endpoint
+
+```http
+GET /product-applications/eligibility
+```
+
+Example:
+
+```http
+GET /product-applications/eligibility?customerId=1&productId=1
+```
+
+Example failure response:
+
+```json
+{
+  "eligible": false,
+  "reason": "Customer does not qualify for this product",
+  "failedChecks": [
+    "Customer requires one of these accounts: [SIGNET_CHEQUE]"
+  ]
+}
+```
+
+

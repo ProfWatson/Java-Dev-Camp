@@ -53,6 +53,8 @@ public class ProductService {
         product.setFulfilmentType(request.getFulfilmentType());
         product.setPrice(request.getPrice());
         product.setActive(request.getActive());
+        product.setQualifyingCustomerTypes(request.getQualifyingCustomerTypes());
+        product.setQualifyingAccountTypes(request.getQualifyingAccountTypes());
 
         Product savedProduct = productRepository.save(product);
 
@@ -69,6 +71,8 @@ public class ProductService {
                 .fulfilmentType(product.getFulfilmentType())
                 .price(product.getPrice())
                 .active(product.getActive())
+                .qualifyingCustomerTypes(product.getQualifyingCustomerTypes())
+                .qualifyingAccountTypes(product.getQualifyingAccountTypes())
                 .build();
     }
 }

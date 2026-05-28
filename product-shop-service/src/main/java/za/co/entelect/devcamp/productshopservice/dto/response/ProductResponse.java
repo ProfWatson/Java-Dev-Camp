@@ -3,6 +3,10 @@ package za.co.entelect.devcamp.productshopservice.dto.response;
 import lombok.Builder;
 import lombok.Data;
 import za.co.entelect.devcamp.productshopservice.model.enums.FulfilmentType;
+import za.co.entelect.devcamp.productshopservice.model.enums.CustomerType;
+import za.co.entelect.devcamp.productshopservice.model.enums.AccountType;
+
+import java.util.Set;
 
 import java.math.BigDecimal;
 
@@ -16,4 +20,6 @@ public class ProductResponse {
     private FulfilmentType fulfilmentType;
     private BigDecimal price;
     private Boolean active;
+    private Set<CustomerType> qualifyingCustomerTypes;
+    private Set<AccountType> qualifyingAccountTypes;
 }
